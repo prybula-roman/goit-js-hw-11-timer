@@ -1,0 +1,13 @@
+{
+  "name": "homework-11",
+  "version": "1.0.0",
+  "description": "**Читать на других языках: [Русский](README.md), [Українська](README.ua.md).**",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "parcel index.html",
+    "build": "parcel build index.html --public-url /goit-js-hw-10-food-service/ --no-content-hash"
+  },
+  "author": "",
+  "license": "ISC"
+}
