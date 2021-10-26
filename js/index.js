@@ -8,7 +8,7 @@ console.log(CountdownTimer);
 const tmd = new CountdownTimer(tm);
 
 const body = document.querySelector("body");
-console.log(body);
+//console.log(body);
 //console.log(tmd.tm.targetDate.toJSON);
 
 //console.log(`tmd.numDays():${tmd.numDays()}`);
