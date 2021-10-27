@@ -1,17 +1,25 @@
-import CountdownTimer from "./timer-date.js";
-const tm = {
-  selector: "#timer-1",
-  targetDate: new Date("Jul 17, 2019"),
+const timer = {
+  start() {
+    const startTime = Date.now();
+    setInterval(() => {
+      const currentTime = Date.now();
+      const deltaTime = currentTime - startTime;
+      const timeComponents = getTimeComponents(deltaTime);
+      console.log(timeComponents);
+    }, 1000);
+  },
 };
 
-console.log(CountdownTimer);
-const tmd = new CountdownTimer(tm);
+function getTimeComponents(time) {
+  const days = Math.floor(time / (1000 * 60 * 60 * 24));
 
-const body = document.querySelector("body");
-//console.log(body);
-//console.log(tmd.tm.targetDate.toJSON);
+  const hours = Math.floor((time % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
 
-//console.log(`tmd.numDays():${tmd.numDays()}`);
-//console.log(`tmd.numHours():${tmd.numHours()}`);
-//console.log(`tmd.numMins():${tmd.numMins()}`);
-//console.log(`tmd.numSecs():${tmd.numSecs()}`);
+  const mins = Math.floor((time % (1000 * 60 * 60)) / (1000 * 60));
+
+  const secs = Math.floor((time % (1000 * 60)) / 1000);
+
+  return { days, hours, mins, secs };
+}
+
+timer.start();
