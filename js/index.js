@@ -1,4 +1,4 @@
-//import template from "../template/template.hbs";
+import template from "../template/template.hbs";
 
 const listTime = document.querySelector(".timer");
 class Timer {
@@ -9,16 +9,30 @@ class Timer {
     this.currentTime = Date.now();
     if (this.endTime.getTime() > this.currentTime) {
       this.start();
+    } else {
+      alert("ERROR!!!");
     }
   }
   start() {
-    setInterval(() => {
-      this.currentTime = Date.now();
-      this.deltaTime = this.endTime.getTime() - this.currentTime;
-      this.timeComponents = this.getTimeComponents(this.deltaTime);
-      console.log(`*********`, this.timeComponents);
-      console.log(`#########`, JSON.stringify(this.timeComponents));
-    }, 1000);
+    const time = document.querySelector(".timer");
+    //  console.log("%%%%%%%%%%%%", time);
+    if (time != null) {
+      time.insertAdjacentHTML("beforeend", template(this.timeComponents));
+      const numDays = time.querySelector('span[data-value="days"]');
+      const numHours = time.querySelector('span[data-value="hours"]');
+      const numMins = time.querySelector('span[data-value="mins"]');
+      const numSecs = time.querySelector('span[data-value="secs"]');
+      console.dir(numDays);
+      setInterval(() => {
+        this.currentTime = Date.now();
+        this.deltaTime = this.endTime.getTime() - this.currentTime;
+        this.timeComponents = this.getTimeComponents(this.deltaTime);
+        numDays.textContent = this.timeComponents.days;
+        numHours.textContent = this.timeComponents.hours;
+        numMins.textContent = this.timeComponents.mins;
+        numSecs.textContent = this.timeComponents.secs;
+      }, 1000);
+    }
   }
   getTimeComponents(time) {
     const days = Math.floor(time / (1000 * 60 * 60 * 24));
@@ -44,5 +58,5 @@ const timeComponents = () => {
   }, 1000);
 };
 //=========================================================
-import template from "../template/template.hbs";
-console.log(template);
+
+//console.log(template);
